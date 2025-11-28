@@ -34,6 +34,10 @@ const config: runtime.GetPrismaClientConfig = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -56,8 +60,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  name     String\n  email    String? @unique\n  phone    String? @unique\n  password String\n  sm8Uuid  String? @unique\n\n  sessions Session[]\n  messages BookingMessage[]\n}\n\nmodel Session {\n  id        Int      @id @default(autoincrement())\n  token     String   @unique\n  userId    Int\n  expiresAt DateTime\n  user      User     @relation(fields: [userId], references: [id])\n}\n\nmodel BookingMessage {\n  id                 Int      @id @default(autoincrement())\n  bookingUuid        String\n  bookingDescription String\n  bookingStatus      String\n  userId             Int\n  message            String\n  createdAt          DateTime @default(now())\n\n  user User @relation(fields: [userId], references: [id])\n}\n",
-  "inlineSchemaHash": "e64454c3c93522738f6248c67f5ae3196bf4e24f97251218ace5c554dfe9853a",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  name     String\n  email    String? @unique\n  phone    String? @unique\n  password String\n  sm8Uuid  String? @unique\n\n  sessions Session[]\n  messages BookingMessage[]\n}\n\nmodel Session {\n  id        Int      @id @default(autoincrement())\n  token     String   @unique\n  userId    Int\n  expiresAt DateTime\n  user      User     @relation(fields: [userId], references: [id])\n}\n\nmodel BookingMessage {\n  id                 Int      @id @default(autoincrement())\n  bookingUuid        String\n  bookingDescription String\n  bookingStatus      String\n  userId             Int\n  message            String\n  createdAt          DateTime @default(now())\n\n  user User @relation(fields: [userId], references: [id])\n}\n",
+  "inlineSchemaHash": "1e16be178d46a913b73bf545cbf2b6579d31bc6a1f31e2657e585e60e20ca062",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
