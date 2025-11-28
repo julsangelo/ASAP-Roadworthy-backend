@@ -6,8 +6,9 @@ import cookieParser from "cookie-parser";
 import { extractToken } from "../lib/utils";
 import {
   COOKIE_NAME,
+  COOKIE_SAME_SITE,
+  COOKIE_SECURE,
   JWT_SECRET,
-  NODE_ENV,
   SERVICE_M8_API_KEY,
 } from "../lib/constants";
 
@@ -81,8 +82,8 @@ router.post("/login", async (req, res) => {
 
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
-      secure: NODE_ENV === "production",
-      sameSite: "lax",
+      secure: COOKIE_SECURE,
+      sameSite: COOKIE_SAME_SITE,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
