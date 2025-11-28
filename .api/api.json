@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "apis": [
+    {
+      "identifier": "servicem8",
+      "source": "@servicem8/v1.0#101v31ymfqf1g4v",
+      "integrity": "sha512-JWlgRq3MjspDms4JiR9U4WQV22Fv91KRp87otuDvuyixxr2xT8kMsNtayVhyFP1VAwLexutwrkuijdpUS4/QaA==",
+      "installerVersion": "6.1.3"
+    }
+  ]
+}
